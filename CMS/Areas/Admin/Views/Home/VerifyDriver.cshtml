@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ApplicationDriver>
+@{
+    ViewData["Title"] = "VerifyDriver";
+}
+
+<div style="background-color:steelblue;" id="background-video" class="hero">
+    <img src="~/Images/hero-bg.png" />
+</div>
+
+<div class="col-lg-5 order-1 order-lg-2 hero-img container" data-aos="zoom-out" style="float:left">
+</div>
+
+
+<div class="container" style="margin-left:40px;margin-top:100px">
+    <div class="container-fluid">
+        @if (Model.Any())
+        {
+            <div class="row">
+
+                <table class="table table-striped bg-white">
+                    <tr>
+                        <th>Driver Name</th>
+                        <th>Liscence Number</th>
+                        <th>Address</th>
+                        <th>Pin-Code</th>
+
+                    </tr>
+                    @foreach (var dr in Model)
+                    {
+                        <tr>
+                            <td>@dr.ApplicationUser.FirstName @dr.ApplicationUser.LastName</td>
+                            <td>@dr.LicenceNumber</td>
+                            <td>@dr.AddressLine1</td>
+                            <td>@dr.AddressLine2</td>
+                            <td style="padding : 0px; margin : 0px ; width: 80px"><a asp-action="VerifyDriver1" asp-route-id="@dr.LicenceNumber" class="btn btn-primary" style="width:80px">Verify</a></td>
+                            <td style="padding : 0px; margin : 0px"><a asp-action="Delete" asp-route-id="@dr.LicenceNumber" class="btn btn-danger" style="width:80px" onclick="return confirm('Do You Want To Delete @dr.ApplicationUser.FirstName')">Delete</a></td>
+                        </tr>
+                    }
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                No drivers were found.
+            </div>
+        }
+    </div>
+
+</div>
+<script>
+    let verifybtn = document.getElementById("dis");
+    function disable(){
+        verifybtn.innerHTML = "verified";
+        verifybtn.style.background = "#aab3bf"; 
+        
+    }
+</script>
+

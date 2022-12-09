@@ -1,0 +1,206 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CMS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CMS.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <div class="container-fluid d-flex align-items-center justify-content-between" style="background-color: rgba(0,0,0,0.5);width:100vw; margin:0px ; padding:0px">
+
+            <a href="index.html" class="logo d-flex align-items-center">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <h1 style="margin-left:20px;margin-top:20px">BookMyRide</h1>
+            </a>
+
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+            <nav id="navbar" class="navbar">
+                <ul class="header-right-link" style="margin-right:50px;margin-bottom:20px">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+
+
+                    
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="dropdown">
+                                <a href="#"><span>Route</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                                <ul>
+                                    <li><a asp-action="AddLocation" asp-controller="Home" asp-area="Admin">New Route</a></li>
+                                    <li><a asp-action="Edit" asp-controller="Home" asp-area="Admin">Edit Route</a></li>
+                                    @*<li><a asp-action="Delete" asp-controller="Home" asp-area="Admin" asp-route-id="@RidePath.Id" onclick="return confirm('Do You Want To Delete This Route')">Delete Route</a></li>*@
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#"><span>Verify</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                                <ul>
+                                    <li><a asp-action="VerifyCab" asp-controller="Home" asp-area="Admin">Verify Cab</a></li>
+                                    <li><a asp-action="VerifyDriver" asp-controller="Home" asp-area="Admin">Verify Driver</a></li>
+                                    @*<li><a asp-action="Delete" asp-controller="Home" asp-area="Admin" asp-route-id="@RidePath.Id" onclick="return confirm('Do You Want To Delete This Route')">Delete Route</a></li>*@
+                                </ul>
+                            </li>
+                            @*<li class="nav-item">
+                                <a asp-action="VerifyCab" asp-controller="Home" asp-area="Admin" class="nav-link text-white">Verify Cab</a>
+                            </li>*@
+                            <li class="nav-item logout-link">
+                                <a asp-action="Logout" asp-controller="Home" asp-area="Accounts" class="nav-link text-white">Logout</a>
+                            </li>
+                        }
+                        else if (User.IsInRole("Driver"))
+                        {
+                            <li class="nav-item li-driver" >
+                                <a asp-action="CabRegistration" asp-controller="Driver" asp-area="Driver" class="nav-link text-white">Register Your Cab</a>
+                            </li>
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown"> Notifiction (<span id="countNotify">0</span>) <span class="caret"></span></a>
+                                <ul class="dropdown-menu" id="myNotifyList">
+                                </ul>
+                            </li>
+
+                            <li class="nav-item logout-link">
+                                <a asp-action="Logout" asp-controller="Home" asp-area="Accounts" class="nav-link text-white">Logout</a>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li class="nav-item logout-link">
+                                <a asp-action="Booking" asp-controller="User" asp-area="User" class="nav-link text-white">Book Your Cab</a>
+                            </li>
+                            <li class="nav-item logout-link">
+                                <a asp-action="ViewHistory" asp-controller="User" asp-area="User" class="nav-link text-white">History</a>
+                            </li>
+                            <li class="nav-item logout-link">
+                                <a asp-action="Logout" asp-controller="Home" asp-area="Accounts" class="nav-link text-white">Logout</a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li>
+                            <a asp-action="Register" asp-controller="Home" asp-area="Accounts" class="nav-item text-primary">User Registration</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="RegisterDriver" asp-controller="Home" asp-area="Accounts" class="text-primary">Driver Registration</a>
+                        </li>
+                        <li><a class="get-a-quote" a asp-action="Login" asp-controller="Home" asp-area="Accounts">Login</a></li>
+                    }
+                    
+                </ul>
+            </nav><!-- .navbar -->
+
+        </div>
+       @* <nav class="navbar navbar-expand-sm  navbar-toggleable-sm navbar-light box-shadow" style="height: 90px;
+    background-color: #3F729B;
+    font-family: sans-serif;
+    position: sticky;
+    top: 0;
+    padding: 0 0 0 0;
+    display: flex;
+    align-items: center;
+    margin-bottom:0">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CMS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1 logo">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("Admin"))
+                            {
+                               <li class="nav-item">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+                                            Dropdown button
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a asp-action="AddLocation" asp-controller="Home" asp-area="Admin" class="nav-link text-white">New Route</a></li>
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                                    </div>
+                                  </li>
+                                <li class="nav-item">
+                                    <a asp-action="VerifyCab" asp-controller="Home" asp-area="Admin" class="nav-link text-white">Verify Cab</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-action="Logout" asp-controller="Home" asp-area="Accounts" class="nav-link text-white">Logout</a>
+                                </li>
+                            }
+                            else if (User.IsInRole("Driver"))
+                            {
+                                <li class="nav-item register-link" style="margin-left:420px">
+                                    <a asp-action="CabRegistration" asp-controller="Driver" asp-area="Driver" class="nav-link text-white">Register Your Cab</a>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown"> Notifiction (<span id="countNotify">0</span>) <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" id="myNotifyList">
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a asp-action="Logout" asp-controller="Home" asp-area="Accounts" class="nav-link text-white">Logout</a>
+                                </li>
+
+                            }
+                            else{
+                                <li class="nav-item">
+                                    <a asp-action="Logout" asp-controller="Home" asp-area="Accounts" class="nav-link text-white">Logout</a>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li class="nav-item register-link" style="margin-left:420px">
+                                <a asp-action="Register" asp-controller="Home" asp-area="Accounts" class="nav-link text-white">User Registration</a>
+                            </li>
+                            <li class="nav-item register-link">
+                                <a asp-action="RegisterDriver" asp-controller="Home" asp-area="Accounts" class="nav-link text-white">Driver Registration</a>
+                            </li>
+                            <li class="nav-item login-link">
+                                <a asp-action="Login" asp-controller="Home" asp-area="Accounts" class="nav-link text-white">Login</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>*@
+    </header>
+    <div class="container" style="margin:0px;padding:0px">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+   @* <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - CMS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)*@
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿@model CMS.Models.ViewModels.RidePathViewModel
+
+@{
+    ViewData["Title"] = "EditLocation";
+}
+
+
+
+<div style="background-color:steelblue;" id="background-video" class="hero">
+    <img src="~/Images/hero-bg.png" />
+</div>
+
+<div class="col-lg-5 order-1 order-lg-2 hero-img container" data-aos="zoom-out" style="float:left">
+
+    <div class="card bg-white text-black align-content-center p-0" style="border-radius: 25px; height:30Vw;width: 30Vw;margin-top:50px">
+
+        <div class="col-md-4 p-5" style="margin-left:30px">
+            <form asp-action="EditLocation" style="width:260px">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @*<input type="hidden" asp-for="Id" />*@
+                <div class="form-group">
+                    <label asp-for="Source" class="control-label"></label>
+                    <input asp-for="Source" class="form-control" />
+                    <span asp-validation-for="Source" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Destination" class="control-label"></label>
+                    <input asp-for="Destination" class="form-control" />
+                    <span asp-validation-for="Destination" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cost" class="control-label"></label>
+                    <input asp-for="Cost" class="form-control" />
+                    <span asp-validation-for="Cost" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="margin-left:40px;margin-top:30px">
+                    <input type="submit" value="Save" class="btn btn-primary" style="height:30px;width:120px" />
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+<div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out" style="float:right">
+    <img src="~/Images/admin1.png" class="img-fluid mb-3 mb-lg-0" alt="" style="margin-top:50px;height:40em;width:100em">
+</div>
+

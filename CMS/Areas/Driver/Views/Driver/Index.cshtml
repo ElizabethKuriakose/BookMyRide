@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Booking>
+@{
+    ViewData["Title"] = "Index";
+}
+<div style="background-color:wheat;" id="background-video" class="hero">
+    <img src="~/Images/hero-bg.png" />
+</div>
+
+<div class="col-lg-5 order-1 order-lg-2 hero-img container" data-aos="zoom-out" style="float:left;margin-top:50px;margin-left:15px">
+    @if (Model.Any())
+    {
+        <div class="row">
+
+            <table class="table table-striped bg-white">
+                <tr>
+                    <th>User Name</th>
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Date</th>
+                    <th>Time</th>
+
+                </tr>
+                @foreach (var booking in Model)
+                {
+                    <tr>
+                        <td>@booking.ApplicationUser.FirstName @booking.ApplicationUser.LastName</td>
+                        <td>@booking.RidePath.Source</td>
+                        <td>@booking.RidePath.Destination</td>
+                        <td>@booking.RideDate</td>
+                        <td>@booking.RideTime</td>
+                        <td typestyle="padding : 0px; margin : 0px ; width: 80px"><a id="chgtext" asp-action="CommitRide" asp-route-id="@booking.Id" class="btn btn-primary" style="width:80px" onclick="">Commit</a></td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            No cabs were found.
+        </div>
+    }
+    
+</div>
+<div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out" style="float:right">
+    <img src="~/Images/drivebanner.png" class="img-fluid mb-3 mb-lg-0" alt="" style="margin-top:70px">
+    <h1 data-aos="fade-up" class="text-white fw-bolder" style="font-size:3em;margin-top:35px">&nbsp;&nbsp;Driving at the speed limit</h1>
+</div>

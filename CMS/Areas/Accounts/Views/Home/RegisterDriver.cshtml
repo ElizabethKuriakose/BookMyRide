@@ -1,0 +1,157 @@
+﻿@model CMS.Models.ViewModels.RegisterDriverViewModel
+
+
+@{
+    ViewData["Title"] = "RegisterDriver";
+}
+
+<section class="h-100 h-custom gradient-custom-2" style="width:100vw; margin: 0px; padding : 0px">
+    <div class="container py-5 h-100 " style="margin:auto;">
+        <div class="row d-flex justify-content-center align-items-center h-100 " >
+            <div class="col-12">
+                <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                    <div class="card-body p-0">
+                        <div class="row g-0">
+                            <form class="mx-1 mx-md-4" method="post">
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    
+                                    <h3 class="fw-normal mb-5" style="color: #4835d4;">Login Credentials</h3>
+                    
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <label asp-for="FirstName"></label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <label asp-for="LastName"></label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <label asp-for="PhoneNumber"></label>
+                            <input asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <label asp-for="Password"></label>
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <label asp-for="ConfirmPassword"></label>
+                            <input asp-for="ConfirmPassword" class="form-control" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                   </div>
+                            </div>
+                            <div class="col-lg-6 bg-indigo text-white" style="float:right;margin-top:-609px;margin-right:21px;">
+                                <div class="p-5">
+                                    <h3 class="fw-normal mb-5">Contact Details</h3>
+
+                                    <div class="mb-4 pb-2">
+                                        <div class="form-outline form-white">
+                                            <label asp-for="LicenceNumber"></label>
+                                            <input input asp-for="LicenceNumber" type="text" id="form3Examplea2" class="form-control form-control-lg" />
+                                            <span asp-validation-for="LicenceNumber" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4 pb-2">
+                                        <div class="form-outline form-white">
+                                            <label asp-for="ValidTo"></label>
+                                            <input input asp-for="ValidTo" type="date" id="form3Examplea2" class="form-control form-control-lg" />
+                                            <span asp-validation-for="ValidTo" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-5 mb-4 pb-2">
+
+                                            <div class="form-outline form-white">
+                                                
+                                                <input asp-for="AddressLine1" type="text" id="form3Examplea4" class="form-control form-control-lg" />
+                                                <label asp-for="AddressLine1" class="form-label" for="form3Examplea4">Zip Code</label>
+                                                <span asp-validation-for="AddressLine1" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-7 mb-4 pb-2">
+
+                                            <div class="form-outline form-white">
+                                                <input asp-for="AddressLine2" type="text" id="form3Examplea5" class="form-control form-control-lg" />
+                                                <label asp-for="AddressLine2"  class="form-label" for="form3Examplea5">Place</label>
+                                                <span asp-validation-for="AddressLine1" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4 pb-2">
+                                        <div class="form-outline form-white">
+                                            <input type="text" id="form3Examplea6" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Examplea6">Country</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                   @*     <div class="col-md-5 mb-4 pb-2">
+
+                                            <div class="form-outline form-white">
+                                                <input type="text" id="form3Examplea7" class="form-control form-control-lg" />
+                                                <label class="form-label" for="form3Examplea7">Code +</label>
+                                            </div>
+
+                                        </div>*@
+
+
+                                        <div class="d-flex justify-content-center">
+                                               
+                                            <button class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
+                                                Register
+                                            </button>
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        </div>
+                                        
+                                </div>
+                            </div>
+                           
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>

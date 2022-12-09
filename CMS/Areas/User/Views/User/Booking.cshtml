@@ -1,0 +1,79 @@
+﻿@model CMS.Models.ViewModels.BookingViewModel
+@{
+    ViewData["Title"] = "Booking";
+}
+
+<div style="background-color:#77BFC7;" id="background-video" class="hero">
+    <img src="~/Images/hero-bg.png" />
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--Card-->
+<div class="card shadow mb-5 bg-white rounded">
+
+	<!--Card-Body-->
+	<div class="card-body">
+
+		<!--Card-Title-->
+		<p class="card-title text-center shadow mb-5 rounded">Travel Booking Form</p>
+ 
+ <div class="icons text-center">
+
+@*<i class="fa fa-auto fa-2x" aria-hidden="true"></i>*@
+<i class="fa fa-taxi fa-2x" aria-hidden="true"></i>
+@*<i class="fa fa-train fa-2x" aria-hidden="true"></i>*@
+
+
+ </div>
+
+    <hr>
+	<div>
+			<form class="mx-1 mx-md-4" method="post">
+		<div class="col-sm-6 row" style="margin-left: 207px;">
+		
+				<select asp-for="Source" asp-items="@(new SelectList(Model.RidePaths, "Id", "Source"))" class="browser-default custom-select mb-4" id="select" asp-items="ViewBag.Source">
+					<option value="" disabled="" selected="">From City</option>
+				</select>
+		
+
+				<select asp-for="Destination" asp-items="@(new SelectList(Model.RidePaths, "Id", "Destination"))" class="browser-default custom-select mb-4" id="select" asp-items="ViewBag.Destination">
+					<option value="" disabled="" selected="">To City</option>
+		 
+				</select>
+		</div>
+
+			
+
+		<div class="container align-content-center">
+
+		
+		<!--Third Row-->
+		<div class="row">
+
+			<div class="col-sm-6">
+				<input asp-for="RideDate" type="date" id="date-picker-example" class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome" >
+			</div>
+
+		
+			<div class="col-sm-6">
+				<input asp-for="RideTime" type="time" id="date-picker-example" class="form-control timepicker mb-4" style="font-family:Arial, FontAwesome">
+			</div>
+
+		</div>
+
+
+		</div>
+				<div class="d-flex justify-content-center">
+					
+
+					<button class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
+						Register
+					</button>
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				</div>
+
+		</form>
+	</div>
+</div>
+
+	

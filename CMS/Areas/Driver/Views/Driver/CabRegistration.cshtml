@@ -1,0 +1,53 @@
+﻿@model CMS.Models.ViewModels.CabRegistrationViewModel
+
+@{
+    ViewData["Title"] = "CabRegistration";
+}
+
+
+<div style="background-color:wheat;" id="background-video" class="hero">
+    <img src="~/Images/hero-bg.png" />
+</div>
+
+
+<div class="col-lg-5 order-1 order-lg-2 hero-img container" data-aos="zoom-out" style="float:left">
+
+    <div class="card bg-white text-black align-content-center p-0" style="border-radius: 25px; height:30Vw;width: 30Vw;margin-top:50px">
+        <div class="col-md-4">
+            <form asp-action="CabRegistration" method="post" style="margin-left:30px;margin-top:50px">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="VehicleNumber" class="control-label"></label>
+                    <input asp-for="VehicleNumber" style="width:23vw" class="form-control" />
+                    <span asp-validation-for="VehicleNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="VehicleType" class="control-label"></label>
+                    <select asp-for="VehicleType" style="width:23vw" class="form-control" asp-items="@Html.GetEnumSelectList<VehicleType>()">
+                        <option>
+                            ----Select----
+                        </option>
+                    </select>
+                    <span asp-validation-for="VehicleType" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="VehicleModel" class="control-label"></label>
+                    <input asp-for="VehicleModel" style="width:23vw" class="form-control" />
+                    <span asp-validation-for="VehicleModel" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" style="margin-left:100px;margin-top:50px">
+                    <input type="submit" value="Register Cab" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+<div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out" style="float:right">
+    <img src="~/Images/drivebanner.png" class="img-fluid mb-3 mb-lg-0" alt="" style="margin-top:70px">
+    <h1 data-aos="fade-up" class="text-white fw-bolder" style="font-size:3em;margin-top:35px">&nbsp;&nbsp;Driving at the speed limit</h1>
+</div>
+
+
